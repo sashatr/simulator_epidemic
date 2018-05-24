@@ -30,12 +30,11 @@ class Node:
 
 
 def random_choice(index, nodes, X):
-    while True:
-        rcs = random.sample(nodes, X)
-        if index in rcs:
-            continue
-        else:
-            return rcs
+    rcs = random.sample(nodes, X)
+    if index in rcs:
+        random_choice(index, nodes, X)
+    else:
+        return rcs
 
 
 def infection(nodes, index, X):
@@ -59,6 +58,7 @@ def start(MY_ALG, nodes, X):
 
     n_iter = 0
     belay = 0
+
     while True:
         n_iter += 1
         r = infection(nodes, index, X)
