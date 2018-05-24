@@ -30,11 +30,12 @@ class Node:
 
 
 def random_choice(index, nodes, X):
-    rcs = random.sample(nodes, X)
-    if index in rcs:
-        random_choice(index, nodes, X)
-    else:
-        return rcs
+    while True:
+        rcs = random.sample(nodes, X)
+        if index in rcs:
+            continue
+        else:
+            return rcs
 
 
 def infection(nodes, index, X):
@@ -85,7 +86,7 @@ def start(MY_ALG, nodes, X):
     return nodes, n_iter, success
 
 
-def start(MY_ALG, N_NODES, X, ITER, ITER_ALG):
+def run_sim(MY_ALG, N_NODES, X, ITER, ITER_ALG):
     success = 0
     n_iter_ = 0
     nodes = [Node() for _ in range(0, N_NODES)]
@@ -131,7 +132,7 @@ def main():
     else:
         ITER_ALG = False
 
-    return start(MY_ALG, N_NODES, X, ITER, ITER_ALG)
+    return run_sim(MY_ALG, N_NODES, X, ITER, ITER_ALG)
 
 
 if __name__ == '__main__':
